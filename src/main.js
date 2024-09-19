@@ -10,8 +10,8 @@ if(localStorage.getItem('webPages')===null){
             "pageUrl":"/home"
         },
         {
-            "pageTitle":"About Axio",
-            "pageUrl":"/axio"
+            "pageTitle":"About Axios",
+            "pageUrl":"/axios"
         }
     ]`)
 }

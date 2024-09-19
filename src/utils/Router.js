@@ -1,5 +1,5 @@
 import HomePage from "@/views/HomePage.vue";
-import AxioPage from "@/views/AxioPage.vue";
+import AxiosPage from "@/views/AxiosPage.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
@@ -7,7 +7,7 @@ const router = createRouter({
     routes: [
         {path: "/", component:HomePage},
         {path: "/home", component:HomePage},
-        {path: "/axio", component:AxioPage}
+        {path: "/axios", component:AxiosPage}
     ]
 })
 
