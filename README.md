@@ -7,6 +7,7 @@ Belajar API Call via Axios
 3. [Vue JS](https://vuejs.org/guide/quick-start)
 4. [Vue Router](https://router.vuejs.org/installation.html)
 5. [Axios](https://axios-http.com/docs/intro)
+6. [Bootstrap stylesheet](https://getbootstrap.com/)
 
 ## Project Setup
 

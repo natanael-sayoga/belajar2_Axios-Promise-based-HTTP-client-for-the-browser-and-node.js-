@@ -1,6 +1,22 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
-import App from './App.vue'
+import MyApp from './MyApp.vue'
+import router from './utils/Router'
+import $webPages from './datas/WebPages'
 
-createApp(App).mount('#app')
+if(localStorage.getItem('webPages')===null){
+    localStorage.setItem('webPages', `[
+        {
+            "pageTitle":"About HTTP",
+            "pageUrl":"/home"
+        },
+        {
+            "pageTitle":"About Axio",
+            "pageUrl":"/axio"
+        }
+    ]`)
+}
+
+const myApp = createApp(MyApp)
+myApp.use(router)
+myApp.provide('$webPages', $webPages)
+myApp.mount('#myApp')
