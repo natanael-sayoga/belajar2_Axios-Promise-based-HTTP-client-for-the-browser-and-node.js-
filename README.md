@@ -9,6 +9,9 @@ Belajar API Call via Axios
 5. [Axios](https://axios-http.com/docs/intro)
 6. [Bootstrap stylesheet](https://getbootstrap.com/)
 
+# Resource:
+- [Digital Ocean](https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios)
+
 ## Project Setup
 
 ```sh
