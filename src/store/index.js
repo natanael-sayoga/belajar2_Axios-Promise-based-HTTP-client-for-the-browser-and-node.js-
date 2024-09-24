@@ -1,8 +1,8 @@
 import { Store } from "vuex";
 import http_rngAPI from "@/service/HTTP-RNGapi";
-import counterModule from "./counterModule/counterModule";
+//import counterModule from "./counterModule/counterModule";
 
-const $store = new Store({
+const counterModule = {
     state: {
         counter: 0,
         errors:[]
@@ -46,10 +46,13 @@ const $store = new Store({
                 }
             )
         }
-    },
-    // modules: {
-    //     'counterModule':counterModule
-    // }
+    }
+}
+
+const $store = new Store({
+    modules: {
+        'counterModule':counterModule
+    }
 })
 
 export default $store

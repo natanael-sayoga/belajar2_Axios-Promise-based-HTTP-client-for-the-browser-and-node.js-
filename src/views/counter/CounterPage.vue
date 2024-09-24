@@ -5,8 +5,8 @@
             <!-- <h6>{{ getter.getCounter }}</h6>
             <h6> ({{ getter.getCounter }}) <sup>2</sup> = {{ getter.getSquaredNumber }}</h6> -->
 
-            <h6>{{ $store.state.counter }}</h6>
-            <h6> ({{ $store.state.counter }}) <sup>2</sup> = {{ $store.getters.getSquaredNumber }}</h6>
+            <h6>{{ $store.getters.getCounter }}</h6>
+            <h6> ({{ $store.getters.getCounter }}) <sup>2</sup> = {{ $store.getters.getSquaredNumber }}</h6>
         </div>
     </div>
     <div class="row">
@@ -46,6 +46,7 @@ let $store = useStore()
 
 // const counter = computed(() => {return $store.getters.value});
 // console.log(counter)
+
 
 let isDisabled = computed(
     () => {
