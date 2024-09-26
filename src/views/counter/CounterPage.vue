@@ -2,8 +2,7 @@
     <div class="Counter">
         <div class="col">
             <h4>Counter</h4>
-            <!-- <h6>{{ getter.getCounter }}</h6>
-            <h6> ({{ getter.getCounter }}) <sup>2</sup> = {{ getter.getSquaredNumber }}</h6> -->
+            <!-- <h6>{{ getter.getCounter }}</h6> -->
 
             <h6>{{ $store.getters.getCounter }}</h6>
             <h6> ({{ $store.getters.getCounter }}) <sup>2</sup> = {{ $store.getters.getSquaredNumber }}</h6>
@@ -28,7 +27,7 @@
 
 <script setup>
 import { mapActions, mapGetters, mapMutations, useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 
 let $store = useStore()
 
@@ -50,7 +49,13 @@ let $store = useStore()
 
 let isDisabled = computed(
     () => {
-        return $store.state.counter == 0
+        return $store.getters.getCounter == 0
+    }
+)
+
+onBeforeMount(
+    () => {
+        //console.log($store._state.data.counterModule.counter)
     }
 )
 

@@ -1,20 +1,28 @@
 <template>
     <h1>JSON Placeholder API</h1>
     <div>
-      <ul v-if="posts && posts.length">
-        <li v-for="post of posts">
-          <p><strong>{{post.title}}</strong></p>
-          <p>{{post.body}}</p>
-        </li>
-      </ul>
-  
-      <ul v-if="errors && errors.length">
-        <li v-for="error of errors">
-          {{error.message}}
-        </li>
-      </ul>
+      <h6>or... in case of failed http request go to the link bellow</h6>
+      <RouterLink
+        class="btn btn-secondary"
+        :to="'/failedFetch'">
+        Failed REQUEST
+      </RouterLink>  
     </div>
-  </template>
+    <div>
+        <ul v-if="posts && posts.length">
+            <li v-for="post of posts">
+                <p><strong>{{post.title}}</strong></p>
+                <p>{{post.body}}</p>
+            </li>
+        </ul>
+    
+        <ul v-if="errors && errors.length">
+            <li v-for="error of errors">
+                {{error.message}}
+            </li>
+        </ul>
+    </div>
+</template>
   
   <script>
   import axios from 'axios';

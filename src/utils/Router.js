@@ -2,6 +2,7 @@ import HomePage from "@/views/HomePage.vue";
 import AxiosPage from "@/views/AxiosPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import CounterPage from "@/views/counter/CounterPage.vue";
+import FailedFetchPage from "@/views/FailedFetchPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -9,7 +10,8 @@ const router = createRouter({
         {path: "/", component:HomePage},
         {path: "/home", component:HomePage},
         {path: "/axios", component:AxiosPage},
-        {path: "/counter", component:CounterPage}
+        {path: "/counter", component:CounterPage},
+        {path: '/failedFetch', component:FailedFetchPage}
     ]
 })
 
