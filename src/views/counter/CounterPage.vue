@@ -2,7 +2,8 @@
     <div class="Counter">
         <div class="col">
             <h4>Counter</h4>
-            <!-- <h6>{{ getter.getCounter }}</h6> -->
+            <!-- this not work?! -->
+            <!-- <h6>{{ data.counter }}</h6> -->
 
             <h6>{{ $store.getters.getCounter }}</h6>
             <h6> ({{ $store.getters.getCounter }}) <sup>2</sup> = {{ $store.getters.getSquaredNumber }}</h6>
@@ -27,9 +28,16 @@
 
 <script setup>
 import { mapActions, mapGetters, mapMutations, useStore } from 'vuex';
-import { computed, onBeforeMount } from 'vue';
+import { computed, onBeforeMount, reactive } from 'vue';
 
 let $store = useStore()
+let data = reactive({
+    counter: $store.getters.getCounter
+})
+
+// let computedCounter = computed(
+    
+// )
 
 // let setter = {...mapMutations('counterModule', {
 //     setCounter:'setCounter',
@@ -56,6 +64,8 @@ let isDisabled = computed(
 onBeforeMount(
     () => {
         //console.log($store._state.data.counterModule.counter)
+        console.log("CounterPage.vue mounted!")
+        console.log(data.counter)
     }
 )
 
