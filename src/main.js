@@ -16,6 +16,21 @@ if(localStorage.getItem('webPages')===null){
     ]`)
 }
 
+function addPagesArrays(pages){
+    if(localStorage.getItem('webPages')!==null){
+        let pagesJsonStr = localStorage.getItem('webPages')
+        let pagesArr = JSON.parse(pagesJsonStr)
+
+        pagesArr.push(pages)
+        localStorage.setItem('webPages', JSON.stringify(pagesArr))
+    }
+}
+
+// addPagesArrays({
+//     pageTitle: 'VeeValidate Form',
+//     pageUrl: '/VeeValidateForm'
+// })
+
 const myApp = createApp(MyApp)
 myApp.use(router)
 myApp.provide('$webPages', $webPages)
