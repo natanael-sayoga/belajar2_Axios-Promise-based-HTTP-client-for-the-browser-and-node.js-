@@ -1,13 +1,45 @@
 <template>
     <form action="" class="myForm" v-on:submit.prevent="onSubmit()">
-        <div>
-            <input type="text" v-bind="emailAttrs" v-model="email"> <br>
-            <span v-if="errors.email" class="warn"> {{ errors.email }}</span>
-        </div>
-        <div>
-            <input type="password" v-bind="passwordAttrs" v-model="password"> <br>
-            <span v-if="errors.password" class="warn"> {{ errors.password }} </span>
-        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="email">email</label>
+                    </td>
+                    <td>
+                        <input id="email" type="text" v-bind="emailAttrs" v-model="email"> <br>
+                        <span v-if="errors.email" class="warn"> {{ errors.email }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="passwd">password</label>
+                    </td>
+                    <td>
+                        <input id="passwd" type="password" v-bind="passwordAttrs" v-model="password"> <br>
+                        <span v-if="errors.password" class="warn"> {{ errors.password }} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="github">github</label>
+                    </td>
+                    <td>
+                        <input type="url" id="github" v-bind="githubAttrs" v-model="github"> <br>
+                        <span v-if="errors['link.github']" class="warn"> {{ errors['link.github'] }} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="twt">twitter</label>
+                    </td>
+                    <td>
+                        <input id="twt" type="url" v-bind="twtbAttrs" v-model="twt"> <br>
+                        <span v-if="errors['link.twt']" class="warn"> {{ errors['link.twt'] }} </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <input 
             type="submit" 
             class="btn btn-primary" 
@@ -17,7 +49,7 @@
         <input 
             type="reset"
             value="clear"
-            v-on:click="resetForm({ values: { email: '', password: '' }, errors: { } })"
+            v-on:click="resetForm({ values: { email: '', password: '', link: {github: '', twt: ''} }, errors: { } })"
             class="btn btn-secondary"
         >
         <input
@@ -40,7 +72,7 @@
 <hr>
 <div>
     All Possible Errors:
-    <pre>{{ errors }}</pre>
+    <pre class="warn">{{ errors }}</pre>
     only email Error: <span class="badge rounded-pill bg-secondary">errors.email</span> or <span class="badge rounded-pill bg-secondary">emailAttrs.error</span>
 </div>
 <hr>
@@ -58,9 +90,22 @@ import { onBeforeMount, onMounted } from 'vue';
 import * as yup from 'yup'
 
 //form instance
-const {defineField, values, errors, handleSubmit, isSubmitting, meta, setValues, resetForm} = useForm({validationSchema: yup.object({
-    email: yup.string().required().email(),
-    password: yup.string().min(8).required()})
+const {
+    defineField, 
+    values, 
+    errors, 
+    handleSubmit, 
+    isSubmitting, 
+    meta, 
+    setValues, 
+    resetForm} 
+= useForm({validationSchema: yup.object({
+    email: yup.string().required('email tidak boleh kosong!').email(),
+    password: yup.string().min(8, 'panjang password minimal 8 karakter').required('password tidak boleh kosong!'),
+    link: yup.object({
+        github:yup.string().url().required('url tidak boleh kosong!'),
+        twt:yup.string().url()})
+    })
 })
 
 const [email, emailAttrs] = defineField('email', {
@@ -68,6 +113,8 @@ const [email, emailAttrs] = defineField('email', {
     props: state => ({ error: state.errors[0] })
 })
 const [password, passwordAttrs] = defineField('password')
+const [github, githubAttrs] = defineField('link.github')
+const [twt, twtbAttrs] = defineField('link.twt')
 
 const onSubmit = handleSubmit(
     //onSuccess
@@ -86,7 +133,8 @@ const onSubmit = handleSubmit(
     },
     //onError
     ({values, errors, results}) => {
-        alert(JSON.stringify(results, null, 2))
+        alert("fail to submit")
+        alert(JSON.stringify(errors.email, null, 2))
         alert(JSON.stringify(meta.value, null, 2))
     }
 )
@@ -97,12 +145,15 @@ async function fetchData() {
     setTimeout(() => {
       resolve({
         email: 'test@email.com',
-        password: 'p@$$w0rd'
+        password: 'p@$$w0rd',
+        link: {
+            github: 'https://github.com/logaretm',
+            twt: 'https://x.com/logaretm'
+        }
       });
     }, 1500);
   });
 }
-
 onBeforeMount(
     async ()=>{
         // setValues({
@@ -110,7 +161,7 @@ onBeforeMount(
         //     password: 'p@$$w0rd',
         // })
         const data = await fetchData();
-        resetForm({ values: data });
+        resetForm({ values: data, errors: { } });
     }
 )
 
