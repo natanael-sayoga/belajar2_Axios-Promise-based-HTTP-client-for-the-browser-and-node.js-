@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="url" v-model="value" v-bind:placeholder="props.placeholderUrl"> <br>
+        <input type="email" v-model="value" :placeholder="props.placeholderEmail"> <br>
         <span v-if="errorMessage" class="warn">{{ errorMessage }}</span>
     </div>
 </template>
@@ -12,11 +12,17 @@ import * as yup from 'yup'
 
 const props = defineProps({
     name: String,
-    placeholderUrl: String
+    placeholderEmail:String
 })
 
-const {value, errorMessage } = useField(
-    () => props.name,
-    yup.string().required('harus diisi').url('url tidak valid')
+const {value, errorMessage} = useField(
+    () => props.name
 )
+
 </script>
+
+<style scoped>
+.warn{
+    color: crimson;
+}
+</style>

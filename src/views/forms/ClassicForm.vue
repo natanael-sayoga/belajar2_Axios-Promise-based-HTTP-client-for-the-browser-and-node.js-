@@ -63,24 +63,24 @@
                 }"
         >
     </form>
-<hr>
-<div>
-    All Possible Value:
-    <pre>{{ values }}</pre>
-    only email value: <span>{{ email }}</span>
-</div>
-<hr>
-<div>
-    All Possible Errors:
-    <pre class="warn">{{ errors }}</pre>
-    only email Error: <span class="badge rounded-pill bg-secondary">errors.email</span> or <span class="badge rounded-pill bg-secondary">emailAttrs.error</span>
-</div>
-<hr>
-<div>
-    <pre>
-        {{ meta }}
-    </pre>
-</div> 
+    <hr>
+    <div>
+        All Possible Value:
+        <pre>{{ values }}</pre>
+        only email value: <span>{{ email }}</span>
+    </div>
+    <hr>
+    <div>
+        All Possible Errors:
+        <pre class="warn">{{ errors }}</pre>
+        only email Error: <span class="badge rounded-pill bg-secondary">errors.email</span> or <span class="badge rounded-pill bg-secondary">emailAttrs.error</span>
+    </div>
+    <hr>
+    <div>
+        <pre>
+            {{ meta }}
+        </pre>
+    </div>
 </template>
 
 <script setup>
@@ -134,25 +134,25 @@ const onSubmit = handleSubmit(
     //onError
     ({values, errors, results}) => {
         alert("fail to submit")
-        alert(JSON.stringify(errors.email, null, 2))
+        alert(JSON.stringify(errors, null, 2))
         alert(JSON.stringify(meta.value, null, 2))
     }
 )
 
 //simulating data fetching
 async function fetchData() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        email: 'test@email.com',
-        password: 'p@$$w0rd',
-        link: {
-            github: 'https://github.com/logaretm',
-            twt: 'https://x.com/logaretm'
-        }
-      });
-    }, 1500);
-  });
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve({
+                email: 'test@email.com',
+                password: 'p@$$w0rd',
+                link: {
+                    github: 'https://github.com/logaretm',
+                    twt: 'https://x.com/logaretm'
+                }
+            });
+        }, 1500);
+    });
 }
 onBeforeMount(
     async ()=>{
@@ -164,7 +164,6 @@ onBeforeMount(
         resetForm({ values: data, errors: { } });
     }
 )
-
 </script>
 
 <style scoped>

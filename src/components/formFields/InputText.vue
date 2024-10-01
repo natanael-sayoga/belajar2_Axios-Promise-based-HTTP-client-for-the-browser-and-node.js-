@@ -8,13 +8,17 @@
 <script setup>
 import { useField } from 'vee-validate';
 import { defineProps } from 'vue';
+import * as yup from 'yup'
 
 const props = defineProps({
     name: String,
     placeholderText: String
 })
 
-const {value, errorMessage} = useField(() => props.name)
+const {value, errorMessage} = useField(
+    () => props.name,
+    yup.string().required('harus diisi')
+)
 </script>
 
 <style scoped>
