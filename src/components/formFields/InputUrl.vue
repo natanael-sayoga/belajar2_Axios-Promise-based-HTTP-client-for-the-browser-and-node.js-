@@ -20,3 +20,9 @@ const {value, errorMessage } = useField(
     yup.string().required('harus diisi').url('url tidak valid')
 )
 </script>
+
+<style scoped>
+.warn{
+    color: crimson;
+}
+</style>

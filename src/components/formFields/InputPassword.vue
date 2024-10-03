@@ -19,3 +19,9 @@ const {value, errorMessage} = useField(
     yup.string().required('harus diisi').min(8, 'panjang password minimal 8 karakter')
 )
 </script>
+
+<style scoped>
+.warn{
+    color: crimson;
+}
+</style>

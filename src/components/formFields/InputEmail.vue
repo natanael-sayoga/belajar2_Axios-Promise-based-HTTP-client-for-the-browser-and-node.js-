@@ -12,11 +12,14 @@ import * as yup from 'yup'
 
 const props = defineProps({
     name: String,
+    modelValue: String,
     placeholderEmail:String
 })
 
 const {value, errorMessage} = useField(
-    () => props.name
+    () => props.name,
+    yup.string().required('harus diisi').email('email tidak valid'),
+    {syncVModel: true}
 )
 
 </script>
